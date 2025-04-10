@@ -1,0 +1,330 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Red de Comunicación - Panel Administrativo</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+        }
+        #map {
+            height: 400px;
+            width: 100%;
+            background-color: #f3f4f6;
+            border-radius: 0.5rem;
+        }
+    </style>
+</head>
+<body class="bg-gray-50">
+    <!-- Navigation -->
+    <nav class="bg-white shadow-lg">
+        <div class="max-w-7xl mx-auto px-4">
+            <div class="flex justify-between h-16">
+                <div class="flex">
+                    <div class="flex-shrink-0 flex items-center">
+                        <h1 class="text-xl font-bold text-gray-800">Panel Administrativo</h1>
+                    </div>
+                </div>
+                <div class="flex items-center">
+                    <button class="text-gray-500 hover:text-gray-600">
+                        <i class="fas fa-user-circle text-2xl"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Main Content -->
+    <main class="max-w-7xl mx-auto py-6 sm:px-6 lg:px-8">
+        <!-- Stats Overview -->
+        <div class="grid grid-cols-1 gap-5 sm:grid-cols-2 lg:grid-cols-4 mb-6">
+            <!-- Total Users -->
+            <div class="bg-white overflow-hidden shadow rounded-lg">
+                <div class="px-4 py-5 sm:p-6">
+                    <div class="flex items-center">
+                        <div class="flex-shrink-0 bg-blue-500 rounded-md p-3">
+                            <i class="fas fa-users text-white text-xl"></i>
+                        </div>
+                        <div class="ml-5">
+                            <dl>
+                                <dt class="text-sm font-medium text-gray-500 truncate">
+                                    Total Usuarios
+                                </dt>
+                                <dd class="mt-1 text-3xl font-semibold text-gray-900">
+                                    248
+                                </dd>
+                            </dl>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Active Users -->
+            <div class="bg-white overflow-hidden shadow rounded-lg">
+                <div class="px-4 py-5 sm:p-6">
+                    <div class="flex items-center">
+                        <div class="flex-shrink-0 bg-green-500 rounded-md p-3">
+                            <i class="fas fa-user-check text-white text-xl"></i>
+                        </div>
+                        <div class="ml-5">
+                            <dl>
+                                <dt class="text-sm font-medium text-gray-500 truncate">
+                                    Usuarios Activos
+                                </dt>
+                                <dd class="mt-1 text-3xl font-semibold text-gray-900">
+                                    186
+                                </dd>
+                            </dl>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Reports -->
+            <div class="bg-white overflow-hidden shadow rounded-lg">
+                <div class="px-4 py-5 sm:p-6">
+                    <div class="flex items-center">
+                        <div class="flex-shrink-0 bg-red-500 rounded-md p-3">
+                            <i class="fas fa-flag text-white text-xl"></i>
+                        </div>
+                        <div class="ml-5">
+                            <dl>
+                                <dt class="text-sm font-medium text-gray-500 truncate">
+                                    Reportes Pendientes
+                                </dt>
+                                <dd class="mt-1 text-3xl font-semibold text-gray-900">
+                                    12
+                                </dd>
+                            </dl>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Benefits -->
+            <div class="bg-white overflow-hidden shadow rounded-lg">
+                <div class="px-4 py-5 sm:p-6">
+                    <div class="flex items-center">
+                        <div class="flex-shrink-0 bg-purple-500 rounded-md p-3">
+                            <i class="fas fa-gift text-white text-xl"></i>
+                        </div>
+                        <div class="ml-5">
+                            <dl>
+                                <dt class="text-sm font-medium text-gray-500 truncate">
+                                    Beneficios Solicitados
+                                </dt>
+                                <dd class="mt-1 text-3xl font-semibold text-gray-900">
+                                    8
+                                </dd>
+                            </dl>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="grid grid-cols-1 lg:grid-cols-3 gap-6">
+            <!-- Map Section -->
+            <div class="lg:col-span-2">
+                <div class="bg-white shadow rounded-lg">
+                    <div class="px-4 py-5 sm:p-6">
+                        <h2 class="text-lg leading-6 font-medium text-gray-900 mb-4">
+                            Ubicación de Usuarios
+                        </h2>
+                        <div id="map" class="mb-4"></div>
+                        <div class="flex justify-between text-sm text-gray-500">
+                            <span>
+                                <i class="fas fa-circle text-green-500"></i> Activo
+                            </span>
+                            <span>
+                                <i class="fas fa-circle text-yellow-500"></i> Inactivo
+                            </span>
+                            <span>
+                                <i class="fas fa-circle text-red-500"></i> Reportando
+                            </span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- User List -->
+            <div class="bg-white shadow rounded-lg">
+                <div class="px-4 py-5 sm:p-6">
+                    <h2 class="text-lg leading-6 font-medium text-gray-900 mb-4">
+                        Usuarios Activos
+                    </h2>
+                    <div class="flow-root">
+                        <ul role="list" class="-my-5 divide-y divide-gray-200">
+                            <li class="py-4">
+                                <div class="flex items-center space-x-4">
+                                    <div class="flex-shrink-0">
+                                        <span class="h-8 w-8 rounded-full bg-green-100 flex items-center justify-center">
+                                            <i class="fas fa-user text-green-500"></i>
+                                        </span>
+                                    </div>
+                                    <div class="flex-1 min-w-0">
+                                        <p class="text-sm font-medium text-gray-900 truncate">
+                                            Juan Pérez
+                                        </p>
+                                        <p class="text-sm text-gray-500 truncate">
+                                            Zona Norte
+                                        </p>
+                                    </div>
+                                    <div>
+                                        <span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-green-100 text-green-800">
+                                            Activo
+                                        </span>
+                                    </div>
+                                </div>
+                            </li>
+                            <li class="py-4">
+                                <div class="flex items-center space-x-4">
+                                    <div class="flex-shrink-0">
+                                        <span class="h-8 w-8 rounded-full bg-yellow-100 flex items-center justify-center">
+                                            <i class="fas fa-user text-yellow-500"></i>
+                                        </span>
+                                    </div>
+                                    <div class="flex-1 min-w-0">
+                                        <p class="text-sm font-medium text-gray-900 truncate">
+                                            María García
+                                        </p>
+                                        <p class="text-sm text-gray-500 truncate">
+                                            Zona Sur
+                                        </p>
+                                    </div>
+                                    <div>
+                                        <span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-yellow-100 text-yellow-800">
+                                            Inactivo
+                                        </span>
+                                    </div>
+                                </div>
+                            </li>
+                            <li class="py-4">
+                                <div class="flex items-center space-x-4">
+                                    <div class="flex-shrink-0">
+                                        <span class="h-8 w-8 rounded-full bg-red-100 flex items-center justify-center">
+                                            <i class="fas fa-user text-red-500"></i>
+                                        </span>
+                                    </div>
+                                    <div class="flex-1 min-w-0">
+                                        <p class="text-sm font-medium text-gray-900 truncate">
+                                            Carlos López
+                                        </p>
+                                        <p class="text-sm text-gray-500 truncate">
+                                            Zona Este
+                                        </p>
+                                    </div>
+                                    <div>
+                                        <span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-red-100 text-red-800">
+                                            Reportando
+                                        </span>
+                                    </div>
+                                </div>
+                            </li>
+                        </ul>
+                    </div>
+                    <div class="mt-6">
+                        <a href="#" class="w-full flex justify-center items-center px-4 py-2 border border-gray-300 shadow-sm text-sm font-medium rounded-md text-gray-700 bg-white hover:bg-gray-50">
+                            Ver todos los usuarios
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Recent Activity -->
+        <div class="mt-6">
+            <div class="bg-white shadow rounded-lg">
+                <div class="px-4 py-5 sm:p-6">
+                    <h2 class="text-lg leading-6 font-medium text-gray-900 mb-4">
+                        Actividad Reciente
+                    </h2>
+                    <div class="flow-root">
+                        <ul role="list" class="-mb-8">
+                            <li>
+                                <div class="relative pb-8">
+                                    <span class="absolute top-4 left-4 -ml-px h-full w-0.5 bg-gray-200" aria-hidden="true"></span>
+                                    <div class="relative flex space-x-3">
+                                        <div>
+                                            <span class="h-8 w-8 rounded-full bg-blue-500 flex items-center justify-center ring-8 ring-white">
+                                                <i class="fas fa-comment text-white"></i>
+                                            </span>
+                                        </div>
+                                        <div class="min-w-0 flex-1 pt-1.5 flex justify-between space-x-4">
+                                            <div>
+                                                <p class="text-sm text-gray-500">Nuevo mensaje de <span class="font-medium text-gray-900">Juan Pérez</span></p>
+                                            </div>
+                                            <div class="text-right text-sm whitespace-nowrap text-gray-500">
+                                                <time datetime="2023-01-23">Hace 5 minutos</time>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </li>
+                            <li>
+                                <div class="relative pb-8">
+                                    <span class="absolute top-4 left-4 -ml-px h-full w-0.5 bg-gray-200" aria-hidden="true"></span>
+                                    <div class="relative flex space-x-3">
+                                        <div>
+                                            <span class="h-8 w-8 rounded-full bg-red-500 flex items-center justify-center ring-8 ring-white">
+                                                <i class="fas fa-exclamation-triangle text-white"></i>
+                                            </span>
+                                        </div>
+                                        <div class="min-w-0 flex-1 pt-1.5 flex justify-between space-x-4">
+                                            <div>
+                                                <p class="text-sm text-gray-500">Nueva denuncia de <span class="font-medium text-gray-900">María García</span></p>
+                                            </div>
+                                            <div class="text-right text-sm whitespace-nowrap text-gray-500">
+                                                <time datetime="2023-01-23">Hace 30 minutos</time>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </li>
+                            <li>
+                                <div class="relative pb-8">
+                                    <div class="relative flex space-x-3">
+                                        <div>
+                                            <span class="h-8 w-8 rounded-full bg-green-500 flex items-center justify-center ring-8 ring-white">
+                                                <i class="fas fa-check text-white"></i>
+                                            </span>
+                                        </div>
+                                        <div class="min-w-0 flex-1 pt-1.5 flex justify-between space-x-4">
+                                            <div>
+                                                <p class="text-sm text-gray-500">Beneficio aprobado para <span class="font-medium text-gray-900">Carlos López</span></p>
+                                            </div>
+                                            <div class="text-right text-sm whitespace-nowrap text-gray-500">
+                                                <time datetime="2023-01-23">Hace 1 hora</time>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <script>
+        // Simulate map initialization with user locations
+        window.addEventListener('load', function() {
+            const map = document.getElementById('map');
+            map.innerHTML = `
+                <div class="flex items-center justify-center h-full bg-gray-100 rounded-lg">
+                    <div class="text-center">
+                        <i class="fas fa-map-marked-alt text-4xl text-indigo-500 mb-2"></i>
+                        <p class="text-sm text-gray-600">Mapa con ubicaciones de usuarios</p>
+                        <p class="text-xs text-gray-500">248 usuarios registrados</p>
+                    </div>
+                </div>
+            `;
+        });
+    </script>
+</body>
+</html>
