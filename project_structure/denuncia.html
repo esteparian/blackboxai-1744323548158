@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Red de Comunicación - Denunciar Problema Laboral</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+        }
+    </style>
+</head>
+<body class="bg-gray-50">
+    <!-- Navigation -->
+    <nav class="bg-white shadow-lg">
+        <div class="max-w-7xl mx-auto px-4">
+            <div class="flex justify-between h-16">
+                <div class="flex">
+                    <div class="flex-shrink-0 flex items-center">
+                        <a href="home.html" class="text-gray-500 hover:text-gray-600 mr-4">
+                            <i class="fas fa-arrow-left"></i>
+                        </a>
+                        <h1 class="text-xl font-bold text-gray-800">Denunciar Problema Laboral</h1>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Main Content -->
+    <main class="max-w-7xl mx-auto py-6 sm:px-6 lg:px-8">
+        <div class="px-4 py-6 sm:px-0">
+            <div class="bg-white shadow rounded-lg">
+                <div class="px-4 py-5 sm:p-6">
+                    <form id="reportForm" class="space-y-6">
+                        <div>
+                            <label for="category" class="block text-sm font-medium text-gray-700">
+                                Categoría del Problema
+                            </label>
+                            <select id="category" name="category" 
+                                class="mt-1 block w-full border border-gray-300 rounded-md shadow-sm py-2 px-3 
+                                focus:outline-none focus:ring-red-500 focus:border-red-500 sm:text-sm" required>
+                                <option value="">Selecciona una categoría</option>
+                                <option value="salario">Problemas de Salario</option>
+                                <option value="horario">Horario Laboral</option>
+                                <option value="seguridad">Seguridad Laboral</option>
+                                <option value="acoso">Acoso Laboral</option>
+                                <option value="discriminacion">Discriminación</option>
+                                <option value="otros">Otros</option>
+                            </select>
+                        </div>
+
+                        <div>
+                            <label for="description" class="block text-sm font-medium text-gray-700">
+                                Descripción del Problema
+                            </label>
+                            <textarea id="description" name="description" rows="4" 
+                                class="mt-1 block w-full border border-gray-300 rounded-md shadow-sm py-2 px-3 
+                                focus:outline-none focus:ring-red-500 focus:border-red-500 sm:text-sm" 
+                                required></textarea>
+                            <p class="mt-2 text-sm text-gray-500">
+                                Describe detalladamente la situación. Tu reporte es confidencial.
+                            </p>
+                        </div>
+
+                        <div>
+                            <label for="location" class="block text-sm font-medium text-gray-700">
+                                Lugar del Incidente
+                            </label>
+                            <input type="text" name="location" id="location" 
+                                class="mt-1 block w-full border border-gray-300 rounded-md shadow-sm py-2 px-3 
+                                focus:outline-none focus:ring-red-500 focus:border-red-500 sm:text-sm" 
+                                required>
+                        </div>
+
+                        <div>
+                            <label for="date" class="block text-sm font-medium text-gray-700">
+                                Fecha del Incidente
+                            </label>
+                            <input type="date" name="date" id="date" 
+                                class="mt-1 block w-full border border-gray-300 rounded-md shadow-sm py-2 px-3 
+                                focus:outline-none focus:ring-red-500 focus:border-red-500 sm:text-sm" 
+                                required>
+                        </div>
+
+                        <div>
+                            <label class="block text-sm font-medium text-gray-700">
+                                Evidencia (opcional)
+                            </label>
+                            <div class="mt-1 flex justify-center px-6 pt-5 pb-6 border-2 border-gray-300 border-dashed rounded-md">
+                                <div class="space-y-1 text-center">
+                                    <i class="fas fa-cloud-upload-alt text-gray-400 text-3xl mb-3"></i>
+                                    <div class="flex text-sm text-gray-600">
+                                        <label for="file-upload" class="relative cursor-pointer bg-white rounded-md font-medium text-blue-600 hover:text-blue-500 focus-within:outline-none focus-within:ring-2 focus-within:ring-offset-2 focus-within:ring-blue-500">
+                                            <span>Sube un archivo</span>
+                                            <input id="file-upload" name="file-upload" type="file" class="sr-only" accept="image/*,video/*">
+                                        </label>
+                                        <p class="pl-1">o arrastra y suelta</p>
+                                    </div>
+                                    <p class="text-xs text-gray-500">
+                                        PNG, JPG, GIF hasta 10MB
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="flex justify-end">
+                            <button type="submit" 
+                                class="inline-flex justify-center py-2 px-4 border border-transparent shadow-sm text-sm 
+                                font-medium rounded-md text-white bg-red-600 hover:bg-red-700 
+                                focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-red-500">
+                                <i class="fas fa-exclamation-triangle mr-2"></i>
+                                Enviar Denuncia
+                            </button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <!-- Success Modal (Hidden by default) -->
+    <div id="successModal" class="hidden fixed inset-0 bg-gray-600 bg-opacity-50 overflow-y-auto h-full w-full">
+        <div class="relative top-20 mx-auto p-5 border w-96 shadow-lg rounded-md bg-white">
+            <div class="mt-3 text-center">
+                <div class="mx-auto flex items-center justify-center h-12 w-12 rounded-full bg-green-100">
+                    <i class="fas fa-check text-green-600 text-xl"></i>
+                </div>
+                <h3 class="text-lg leading-6 font-medium text-gray-900 mt-4">¡Denuncia Registrada!</h3>
+                <div class="mt-2 px-7 py-3">
+                    <p class="text-sm text-gray-500">
+                        Tu denuncia ha sido registrada correctamente. Se te han acreditado puntos por tu colaboración.
+                    </p>
+                </div>
+                <div class="items-center px-4 py-3">
+                    <button id="closeModal" 
+                        class="px-4 py-2 bg-green-500 text-white text-base font-medium rounded-md w-full 
+                        shadow-sm hover:bg-green-600 focus:outline-none focus:ring-2 focus:ring-green-300">
+                        Aceptar
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        document.getElementById('reportForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            // Show success modal
+            document.getElementById('successModal').classList.remove('hidden');
+        });
+
+        document.getElementById('closeModal').addEventListener('click', function() {
+            document.getElementById('successModal').classList.add('hidden');
+            // Redirect to home
+            window.location.href = 'home.html';
+        });
+
+        // File upload preview
+        document.getElementById('file-upload').addEventListener('change', function(e) {
+            const fileName = e.target.files[0]?.name;
+            if (fileName) {
+                const fileInfo = document.querySelector('.text-xs.text-gray-500');
+                fileInfo.textContent = `Archivo seleccionado: ${fileName}`;
+            }
+        });
+    </script>
+</body>
+</html>
