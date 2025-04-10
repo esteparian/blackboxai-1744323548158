@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Red de Comunicación - Dashboard</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+        }
+    </style>
+</head>
+<body class="bg-gray-50">
+    <!-- Navigation -->
+    <nav class="bg-white shadow-lg">
+        <div class="max-w-7xl mx-auto px-4">
+            <div class="flex justify-between h-16">
+                <div class="flex">
+                    <div class="flex-shrink-0 flex items-center">
+                        <h1 class="text-xl font-bold text-gray-800">Red de Comunicación</h1>
+                    </div>
+                </div>
+                <div class="flex items-center">
+                    <span class="text-gray-600 mr-4">
+                        <i class="fas fa-star text-yellow-400"></i>
+                        <span id="points">100</span> puntos
+                    </span>
+                    <button class="text-gray-500 hover:text-gray-600">
+                        <i class="fas fa-user-circle text-2xl"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Main Content -->
+    <main class="max-w-7xl mx-auto py-6 sm:px-6 lg:px-8">
+        <!-- Grid of options -->
+        <div class="px-4 py-6 sm:px-0">
+            <div class="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3">
+                <!-- Comunicarse con la central -->
+                <a href="comunicacion.html" class="bg-white overflow-hidden shadow rounded-lg hover:shadow-lg transition-shadow duration-300">
+                    <div class="px-4 py-5 sm:p-6">
+                        <div class="flex items-center">
+                            <div class="flex-shrink-0 bg-blue-500 rounded-md p-3">
+                                <i class="fas fa-headset text-white text-2xl"></i>
+                            </div>
+                            <div class="ml-5">
+                                <h3 class="text-lg leading-6 font-medium text-gray-900">
+                                    Comunicarse con la central
+                                </h3>
+                                <p class="mt-1 text-sm text-gray-500">
+                                    Contacta directamente con la central
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                </a>
+
+                <!-- Denunciar problema laboral -->
+                <a href="denuncia.html" class="bg-white overflow-hidden shadow rounded-lg hover:shadow-lg transition-shadow duration-300">
+                    <div class="px-4 py-5 sm:p-6">
+                        <div class="flex items-center">
+                            <div class="flex-shrink-0 bg-red-500 rounded-md p-3">
+                                <i class="fas fa-exclamation-triangle text-white text-2xl"></i>
+                            </div>
+                            <div class="ml-5">
+                                <h3 class="text-lg leading-6 font-medium text-gray-900">
+                                    Denunciar problema
+                                </h3>
+                                <p class="mt-1 text-sm text-gray-500">
+                                    Reporta irregularidades laborales
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                </a>
+
+                <!-- Enviar foto o video -->
+                <a href="multimedia.html" class="bg-white overflow-hidden shadow rounded-lg hover:shadow-lg transition-shadow duration-300">
+                    <div class="px-4 py-5 sm:p-6">
+                        <div class="flex items-center">
+                            <div class="flex-shrink-0 bg-green-500 rounded-md p-3">
+                                <i class="fas fa-camera text-white text-2xl"></i>
+                            </div>
+                            <div class="ml-5">
+                                <h3 class="text-lg leading-6 font-medium text-gray-900">
+                                    Enviar multimedia
+                                </h3>
+                                <p class="mt-1 text-sm text-gray-500">
+                                    Sube fotos o videos
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                </a>
+
+                <!-- Sumar puntos -->
+                <a href="puntos.html" class="bg-white overflow-hidden shadow rounded-lg hover:shadow-lg transition-shadow duration-300">
+                    <div class="px-4 py-5 sm:p-6">
+                        <div class="flex items-center">
+                            <div class="flex-shrink-0 bg-yellow-500 rounded-md p-3">
+                                <i class="fas fa-star text-white text-2xl"></i>
+                            </div>
+                            <div class="ml-5">
+                                <h3 class="text-lg leading-6 font-medium text-gray-900">
+                                    Sumar puntos
+                                </h3>
+                                <p class="mt-1 text-sm text-gray-500">
+                                    Gana puntos por denuncias
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                </a>
+
+                <!-- Solicitar beneficio -->
+                <a href="beneficio.html" class="bg-white overflow-hidden shadow rounded-lg hover:shadow-lg transition-shadow duration-300">
+                    <div class="px-4 py-5 sm:p-6">
+                        <div class="flex items-center">
+                            <div class="flex-shrink-0 bg-purple-500 rounded-md p-3">
+                                <i class="fas fa-gift text-white text-2xl"></i>
+                            </div>
+                            <div class="ml-5">
+                                <h3 class="text-lg leading-6 font-medium text-gray-900">
+                                    Solicitar beneficio
+                                </h3>
+                                <p class="mt-1 text-sm text-gray-500">
+                                    Canjea tus puntos
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                </a>
+
+                <!-- Declarar punto de trabajo -->
+                <a href="puntoTrabajo.html" class="bg-white overflow-hidden shadow rounded-lg hover:shadow-lg transition-shadow duration-300">
+                    <div class="px-4 py-5 sm:p-6">
+                        <div class="flex items-center">
+                            <div class="flex-shrink-0 bg-indigo-500 rounded-md p-3">
+                                <i class="fas fa-map-marker-alt text-white text-2xl"></i>
+                            </div>
+                            <div class="ml-5">
+                                <h3 class="text-lg leading-6 font-medium text-gray-900">
+                                    Punto de trabajo
+                                </h3>
+                                <p class="mt-1 text-sm text-gray-500">
+                                    Declara tu ubicación actual
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                </a>
+            </div>
+        </div>
+    </main>
+</body>
+</html>
