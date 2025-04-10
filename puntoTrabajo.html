@@ -1,0 +1,240 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Red de Comunicación - Punto de Trabajo</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+        }
+        #map {
+            height: 300px;
+            width: 100%;
+            background-color: #f3f4f6;
+            border-radius: 0.5rem;
+        }
+    </style>
+</head>
+<body class="bg-gray-50">
+    <!-- Navigation -->
+    <nav class="bg-white shadow-lg">
+        <div class="max-w-7xl mx-auto px-4">
+            <div class="flex justify-between h-16">
+                <div class="flex">
+                    <div class="flex-shrink-0 flex items-center">
+                        <a href="home.html" class="text-gray-500 hover:text-gray-600 mr-4">
+                            <i class="fas fa-arrow-left"></i>
+                        </a>
+                        <h1 class="text-xl font-bold text-gray-800">Punto de Trabajo</h1>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Main Content -->
+    <main class="max-w-7xl mx-auto py-6 sm:px-6 lg:px-8">
+        <div class="px-4 py-6 sm:px-0">
+            <!-- Current Location Card -->
+            <div class="bg-white shadow rounded-lg mb-6">
+                <div class="px-4 py-5 sm:p-6">
+                    <h2 class="text-lg leading-6 font-medium text-gray-900 mb-4">
+                        Ubicación Actual
+                    </h2>
+                    <div id="locationStatus" class="flex items-center mb-4">
+                        <span class="h-8 w-8 rounded-full bg-gray-100 flex items-center justify-center">
+                            <i class="fas fa-location-dot text-gray-400"></i>
+                        </span>
+                        <span class="ml-3 text-sm text-gray-500">
+                            Obteniendo ubicación...
+                        </span>
+                    </div>
+                    <div id="map" class="mb-4"></div>
+                    <div class="space-y-4">
+                        <div>
+                            <label class="block text-sm font-medium text-gray-700">
+                                Dirección
+                            </label>
+                            <input type="text" id="address" readonly
+                                class="mt-1 block w-full bg-gray-50 border border-gray-300 rounded-md shadow-sm py-2 px-3 text-gray-700 sm:text-sm">
+                        </div>
+                        <div>
+                            <label class="block text-sm font-medium text-gray-700">
+                                Coordenadas
+                            </label>
+                            <input type="text" id="coordinates" readonly
+                                class="mt-1 block w-full bg-gray-50 border border-gray-300 rounded-md shadow-sm py-2 px-3 text-gray-700 sm:text-sm">
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Declaration Form -->
+            <div class="bg-white shadow rounded-lg">
+                <div class="px-4 py-5 sm:p-6">
+                    <h2 class="text-lg leading-6 font-medium text-gray-900 mb-4">
+                        Declarar Punto de Trabajo
+                    </h2>
+                    <form id="workLocationForm" class="space-y-6">
+                        <div>
+                            <label for="workType" class="block text-sm font-medium text-gray-700">
+                                Tipo de Trabajo
+                            </label>
+                            <select id="workType" name="workType" 
+                                class="mt-1 block w-full border border-gray-300 rounded-md shadow-sm py-2 px-3 
+                                focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm">
+                                <option value="permanent">Permanente</option>
+                                <option value="temporary">Temporal</option>
+                                <option value="mobile">Móvil</option>
+                            </select>
+                        </div>
+
+                        <div>
+                            <label for="schedule" class="block text-sm font-medium text-gray-700">
+                                Horario de Trabajo
+                            </label>
+                            <select id="schedule" name="schedule" 
+                                class="mt-1 block w-full border border-gray-300 rounded-md shadow-sm py-2 px-3 
+                                focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm">
+                                <option value="morning">Mañana (6:00 - 14:00)</option>
+                                <option value="afternoon">Tarde (14:00 - 22:00)</option>
+                                <option value="night">Noche (22:00 - 6:00)</option>
+                                <option value="custom">Personalizado</option>
+                            </select>
+                        </div>
+
+                        <div>
+                            <label for="notes" class="block text-sm font-medium text-gray-700">
+                                Notas Adicionales
+                            </label>
+                            <textarea id="notes" name="notes" rows="3" 
+                                class="mt-1 block w-full border border-gray-300 rounded-md shadow-sm py-2 px-3 
+                                focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm" 
+                                placeholder="Agrega cualquier información relevante sobre tu ubicación de trabajo..."></textarea>
+                        </div>
+
+                        <div class="flex justify-end">
+                            <button type="submit" 
+                                class="inline-flex justify-center py-2 px-4 border border-transparent shadow-sm text-sm 
+                                font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-700 
+                                focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">
+                                <i class="fas fa-map-marker-alt mr-2"></i>
+                                Declarar Ubicación
+                            </button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <!-- Success Modal (Hidden by default) -->
+    <div id="successModal" class="hidden fixed inset-0 bg-gray-600 bg-opacity-50 overflow-y-auto h-full w-full">
+        <div class="relative top-20 mx-auto p-5 border w-96 shadow-lg rounded-md bg-white">
+            <div class="mt-3 text-center">
+                <div class="mx-auto flex items-center justify-center h-12 w-12 rounded-full bg-green-100">
+                    <i class="fas fa-check text-green-600 text-xl"></i>
+                </div>
+                <h3 class="text-lg leading-6 font-medium text-gray-900 mt-4">¡Ubicación Declarada!</h3>
+                <div class="mt-2 px-7 py-3">
+                    <p class="text-sm text-gray-500">
+                        Tu punto de trabajo ha sido registrado correctamente.
+                    </p>
+                </div>
+                <div class="items-center px-4 py-3">
+                    <button id="closeModal" 
+                        class="px-4 py-2 bg-green-500 text-white text-base font-medium rounded-md w-full 
+                        shadow-sm hover:bg-green-600 focus:outline-none focus:ring-2 focus:ring-green-300">
+                        Aceptar
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Get current location
+        function getLocation() {
+            if (navigator.geolocation) {
+                navigator.geolocation.getCurrentPosition(showPosition, showError);
+            } else {
+                updateLocationStatus("La geolocalización no está soportada en este dispositivo", "error");
+            }
+        }
+
+        function showPosition(position) {
+            const lat = position.coords.latitude;
+            const lon = position.coords.longitude;
+            
+            // Update status and coordinates
+            document.getElementById('coordinates').value = `${lat}, ${lon}`;
+            updateLocationStatus("Ubicación obtenida correctamente", "success");
+            
+            // Simulate address (in a real app, you would use reverse geocoding)
+            document.getElementById('address').value = "Av. Example 123, Ciudad Example";
+            
+            // Update map placeholder with coordinates
+            const map = document.getElementById('map');
+            map.innerHTML = `<div class="flex items-center justify-center h-full bg-gray-100 rounded-lg">
+                <div class="text-center">
+                    <i class="fas fa-map-marker-alt text-4xl text-indigo-500 mb-2"></i>
+                    <p class="text-sm text-gray-600">Ubicación actual:<br>${lat}, ${lon}</p>
+                </div>
+            </div>`;
+        }
+
+        function showError(error) {
+            let message;
+            switch(error.code) {
+                case error.PERMISSION_DENIED:
+                    message = "Usuario denegó la solicitud de geolocalización.";
+                    break;
+                case error.POSITION_UNAVAILABLE:
+                    message = "La información de ubicación no está disponible.";
+                    break;
+                case error.TIMEOUT:
+                    message = "La solicitud de ubicación expiró.";
+                    break;
+                case error.UNKNOWN_ERROR:
+                    message = "Ocurrió un error desconocido.";
+                    break;
+            }
+            updateLocationStatus(message, "error");
+        }
+
+        function updateLocationStatus(message, status) {
+            const statusElement = document.getElementById('locationStatus');
+            const icon = statusElement.querySelector('i');
+            const text = statusElement.querySelector('span:last-child');
+            
+            if (status === "success") {
+                icon.className = "fas fa-location-dot text-green-500";
+                statusElement.querySelector('.rounded-full').className = "h-8 w-8 rounded-full bg-green-100 flex items-center justify-center";
+            } else if (status === "error") {
+                icon.className = "fas fa-exclamation-triangle text-red-500";
+                statusElement.querySelector('.rounded-full').className = "h-8 w-8 rounded-full bg-red-100 flex items-center justify-center";
+            }
+            
+            text.textContent = message;
+        }
+
+        // Form submission
+        document.getElementById('workLocationForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            document.getElementById('successModal').classList.remove('hidden');
+        });
+
+        document.getElementById('closeModal').addEventListener('click', function() {
+            document.getElementById('successModal').classList.add('hidden');
+            window.location.href = 'home.html';
+        });
+
+        // Initialize location tracking when page loads
+        window.addEventListener('load', getLocation);
+    </script>
+</body>
+</html>
