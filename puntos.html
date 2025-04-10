@@ -1,0 +1,230 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Red de Comunicación - Puntos</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+        }
+    </style>
+</head>
+<body class="bg-gray-50">
+    <!-- Navigation -->
+    <nav class="bg-white shadow-lg">
+        <div class="max-w-7xl mx-auto px-4">
+            <div class="flex justify-between h-16">
+                <div class="flex">
+                    <div class="flex-shrink-0 flex items-center">
+                        <a href="home.html" class="text-gray-500 hover:text-gray-600 mr-4">
+                            <i class="fas fa-arrow-left"></i>
+                        </a>
+                        <h1 class="text-xl font-bold text-gray-800">Mis Puntos</h1>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Main Content -->
+    <main class="max-w-7xl mx-auto py-6 sm:px-6 lg:px-8">
+        <div class="px-4 py-6 sm:px-0">
+            <!-- Points Overview -->
+            <div class="bg-white overflow-hidden shadow rounded-lg mb-6">
+                <div class="px-4 py-5 sm:p-6">
+                    <div class="flex items-center justify-between">
+                        <div>
+                            <h2 class="text-2xl font-bold text-gray-900">Puntos Acumulados</h2>
+                            <p class="mt-1 text-sm text-gray-500">Total de puntos por reportes realizados</p>
+                        </div>
+                        <div class="text-right">
+                            <p class="text-4xl font-bold text-yellow-500" id="totalPoints">100</p>
+                            <p class="text-sm text-gray-500">puntos</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Report Form -->
+            <div class="bg-white shadow rounded-lg mb-6">
+                <div class="px-4 py-5 sm:p-6">
+                    <h3 class="text-lg leading-6 font-medium text-gray-900 mb-4">
+                        Reportar Nueva Irregularidad
+                    </h3>
+                    <form id="reportForm" class="space-y-6">
+                        <div>
+                            <label for="irregularity-type" class="block text-sm font-medium text-gray-700">
+                                Tipo de Irregularidad
+                            </label>
+                            <select id="irregularity-type" name="irregularity-type" 
+                                class="mt-1 block w-full border border-gray-300 rounded-md shadow-sm py-2 px-3 
+                                focus:outline-none focus:ring-yellow-500 focus:border-yellow-500 sm:text-sm">
+                                <option value="">Selecciona un tipo</option>
+                                <option value="safety">Seguridad</option>
+                                <option value="health">Salud</option>
+                                <option value="labor">Laboral</option>
+                                <option value="discrimination">Discriminación</option>
+                                <option value="other">Otro</option>
+                            </select>
+                        </div>
+
+                        <div>
+                            <label for="description" class="block text-sm font-medium text-gray-700">
+                                Descripción
+                            </label>
+                            <textarea id="description" name="description" rows="3" 
+                                class="mt-1 block w-full border border-gray-300 rounded-md shadow-sm py-2 px-3 
+                                focus:outline-none focus:ring-yellow-500 focus:border-yellow-500 sm:text-sm" 
+                                placeholder="Describe la irregularidad..."></textarea>
+                        </div>
+
+                        <div class="flex justify-end">
+                            <button type="submit" 
+                                class="inline-flex justify-center py-2 px-4 border border-transparent shadow-sm text-sm 
+                                font-medium rounded-md text-white bg-yellow-600 hover:bg-yellow-700 
+                                focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-yellow-500">
+                                <i class="fas fa-flag mr-2"></i>
+                                Enviar Reporte
+                            </button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+
+            <!-- History -->
+            <div class="bg-white shadow rounded-lg">
+                <div class="px-4 py-5 sm:p-6">
+                    <h3 class="text-lg leading-6 font-medium text-gray-900 mb-4">
+                        Historial de Reportes
+                    </h3>
+                    <div class="flow-root">
+                        <ul role="list" class="-mb-8" id="reportHistory">
+                            <!-- Example history items -->
+                            <li>
+                                <div class="relative pb-8">
+                                    <span class="absolute top-4 left-4 -ml-px h-full w-0.5 bg-gray-200" aria-hidden="true"></span>
+                                    <div class="relative flex space-x-3">
+                                        <div>
+                                            <span class="h-8 w-8 rounded-full bg-yellow-500 flex items-center justify-center ring-8 ring-white">
+                                                <i class="fas fa-exclamation-triangle text-white"></i>
+                                            </span>
+                                        </div>
+                                        <div class="min-w-0 flex-1 pt-1.5 flex justify-between space-x-4">
+                                            <div>
+                                                <p class="text-sm text-gray-500">Reporte de Seguridad <span class="font-medium text-gray-900">+25 puntos</span></p>
+                                            </div>
+                                            <div class="text-right text-sm whitespace-nowrap text-gray-500">
+                                                <time datetime="2023-01-23">Hace 3 días</time>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </li>
+                            <li>
+                                <div class="relative pb-8">
+                                    <div class="relative flex space-x-3">
+                                        <div>
+                                            <span class="h-8 w-8 rounded-full bg-yellow-500 flex items-center justify-center ring-8 ring-white">
+                                                <i class="fas fa-exclamation-circle text-white"></i>
+                                            </span>
+                                        </div>
+                                        <div class="min-w-0 flex-1 pt-1.5 flex justify-between space-x-4">
+                                            <div>
+                                                <p class="text-sm text-gray-500">Reporte Laboral <span class="font-medium text-gray-900">+30 puntos</span></p>
+                                            </div>
+                                            <div class="text-right text-sm whitespace-nowrap text-gray-500">
+                                                <time datetime="2023-01-20">Hace 6 días</time>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <!-- Success Modal (Hidden by default) -->
+    <div id="successModal" class="hidden fixed inset-0 bg-gray-600 bg-opacity-50 overflow-y-auto h-full w-full">
+        <div class="relative top-20 mx-auto p-5 border w-96 shadow-lg rounded-md bg-white">
+            <div class="mt-3 text-center">
+                <div class="mx-auto flex items-center justify-center h-12 w-12 rounded-full bg-green-100">
+                    <i class="fas fa-check text-green-600 text-xl"></i>
+                </div>
+                <h3 class="text-lg leading-6 font-medium text-gray-900 mt-4">¡Reporte Enviado!</h3>
+                <div class="mt-2 px-7 py-3">
+                    <p class="text-sm text-gray-500">
+                        Tu reporte ha sido registrado y has ganado <span class="font-bold text-yellow-500">+25</span> puntos.
+                    </p>
+                </div>
+                <div class="items-center px-4 py-3">
+                    <button id="closeModal" 
+                        class="px-4 py-2 bg-green-500 text-white text-base font-medium rounded-md w-full 
+                        shadow-sm hover:bg-green-600 focus:outline-none focus:ring-2 focus:ring-green-300">
+                        Aceptar
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        let currentPoints = 100;
+        const totalPointsElement = document.getElementById('totalPoints');
+        const reportForm = document.getElementById('reportForm');
+        const successModal = document.getElementById('successModal');
+        const closeModal = document.getElementById('closeModal');
+
+        reportForm.addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            // Add points
+            currentPoints += 25;
+            totalPointsElement.textContent = currentPoints;
+
+            // Show success modal
+            successModal.classList.remove('hidden');
+
+            // Add to history
+            const historyItem = createHistoryItem();
+            document.getElementById('reportHistory').prepend(historyItem);
+        });
+
+        closeModal.addEventListener('click', function() {
+            successModal.classList.add('hidden');
+            reportForm.reset();
+        });
+
+        function createHistoryItem() {
+            const li = document.createElement('li');
+            li.innerHTML = `
+                <div class="relative pb-8">
+                    <span class="absolute top-4 left-4 -ml-px h-full w-0.5 bg-gray-200" aria-hidden="true"></span>
+                    <div class="relative flex space-x-3">
+                        <div>
+                            <span class="h-8 w-8 rounded-full bg-yellow-500 flex items-center justify-center ring-8 ring-white">
+                                <i class="fas fa-exclamation-triangle text-white"></i>
+                            </span>
+                        </div>
+                        <div class="min-w-0 flex-1 pt-1.5 flex justify-between space-x-4">
+                            <div>
+                                <p class="text-sm text-gray-500">Nuevo Reporte <span class="font-medium text-gray-900">+25 puntos</span></p>
+                            </div>
+                            <div class="text-right text-sm whitespace-nowrap text-gray-500">
+                                <time datetime="${new Date().toISOString()}">Ahora</time>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            `;
+            return li;
+        }
+    </script>
+</body>
+</html>
